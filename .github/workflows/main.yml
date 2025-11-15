@@ -1,0 +1,15 @@
+name: 写hello到D盘
+on:
+  workflow_dispatch:  # 手动按钮
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 生成hello.txt
+        run: echo "Hello from GitHub Actions" > hello.txt
+      - name: 上传为构件（Artifacts）
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello
+          path: hello.txt
